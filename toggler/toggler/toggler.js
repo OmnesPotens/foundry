@@ -8,7 +8,8 @@ const Toggler = (() => {
 		let items = data.actor.items;
 		// let vision_item = items.find(i => i.transferredEffects().toLowerCase().includes("vision"));
 		Object.entries(items).forEach((item) => {
-			if (item.transferredEffects().toLowerCase().includes("vision")) {
+			let vision_item = item.transferredEffects.find(effect => effect.data.label.toLowerCase().includes("vision"));
+			if (vision_item) {
 				let actor = game.actors.get(data.actor._id);
 				let tokens = actor.getActiveTokens();
 				for (let token of tokens) {
